@@ -1,14 +1,9 @@
 {
-  "name": "nextjs-template",
-  "build": {
-    "dockerfile": "Dockerfile",
-    // Update 'VARIANT' to pick a Node version: 18, 16, 14.
-    // Append -bullseye or -buster to pin to an OS version.
-    // Use -bullseye variants on local arm64/Apple Silicon.
-    "args": {
-      "VARIANT": "20-bullseye"
-    }
-  },
+  "name": "weekly-ui",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye",
+  "mounts": [
+    "source=pnpm_store,target=/home/node/.pnpm-store,type=volume"
+  ],
   // Configure tool-specific properties.
   "customizations": {
     // Configure properties specific to VS Code.
@@ -51,7 +46,7 @@
     3000
   ],
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "pnpm config set store-dir ~/pnpm && pnpm install",
+  "postCreateCommand": "pnpm config set store-dir ~/.pnpm-store",
   // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
   "remoteUser": "node"
 }

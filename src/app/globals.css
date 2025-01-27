@@ -2,9 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 0 0% 98%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -61,9 +63,46 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border box-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground scroll-smooth;
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar styles */
+  .scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted-foreground)) transparent;
+  }
+
+  .scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 4px;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground));
+    border-radius: 4px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--foreground));
+  }
+
+  .dark .scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground));
+  }
+
+  .dark .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--foreground));
   }
 }
